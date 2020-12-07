@@ -1,17 +1,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1‐transitional.dtd">
- <html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
+<ui:composition>
 <f:view>
 	<h:head>
-		<title>JavaServer Faces aplikazioa</title>
+		<title>Query Questions</title>
 	</h:head>
-	<h:body><h3 style="width: 119px;">Ikusi galderak</h3><br />jiiojioijoijjioijoiojij<br />
+	<h:body>
+	<h:form>
+		<h3>Query Questions</h3><br />
+		<tr>
+		<td><h4>Event Date</h4></td>
+		<td><p:calendar id="data" value="#{queryQuestions.data}"
+					navigator="false" mode="inline" >
+			<p:ajax event="dateSelect" listener="#{queryQuestions.onDateSelect}"
+			update="taulaEvents" execute="d"></p:ajax></p:calendar>
 		
+			<h:message for="d" style="color:red" />
+		
+		</td>
+		</tr><br /><br />
+		<tr> <td>
+		<h:dataTable id="taulaEvents" value="#{queryBean.events}" var="item"
+						border="1">
+						<f:facet name="header">Events</f:facet>
+						<h:column>
+							<f:facet name="header">Event#</f:facet>
+							"#{item.eventzbkia}"
+						</h:column>
+						<h:column>
+							<f:facet name="header">Event</f:facet>
+							"#{item.deskripzioa}"
+						</h:column>
+					</h:dataTable>
+		<br></br>
+		 </td> </tr>
+		 
+		 
+		<tr> <td> 
+		<h:dataTable id="taulaQuestions" value="#{queryBean.questions}" var="itemq"
+						border="1">
+						<f:facet name="header">Questions</f:facet>
+						<h:column>
+							<f:facet name="header">Question#</f:facet>
+							"#{itemq.questionzbkia}"
+						</h:column>
+						<h:column>
+							<f:facet name="header">Question</f:facet>
+							"#{itemq.question}"		
+						</h:column>
+					</h:dataTable>
+		</td></tr>
+		
+		<br></br>
+		
+		<h:commandButton value="Atzera" action="itxi" immediate="true"></h:commandButton>
+		<h:messages id="mezuak" style="color:blue" />
+    </h:form>
 	</h:body>
 </f:view>
+</ui:composition>
 </html>

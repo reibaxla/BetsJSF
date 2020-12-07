@@ -10,27 +10,29 @@
 	<h:head>
 		<title>JavaServer Faces aplikazioa</title>
 	</h:head>
-	<h:body><h3 >Sortu galderak</h3>
+	<h:body>
 		<h:form>
-<table>
-				<tr>
-					<!-- <td>Data (yyyy/MM/dd):</td>
-					<td><h:inputText id="data" value="#{login.data}">
-							<f:convertDateTime pattern="yyyy/MM/dd" />
-						</h:inputText></td>
-					<td><h:message for="data" style="color:red" /></td> -->
-
-					<td>Data (PrimeFaces‐ekin):</td>
-					<td><p:calendar id="data" value="#{login.data}"
-							navigator="false" mode="inline">
-							<p:ajax event="dateSelect" listener="#{login.onDateSelect}"
-								update="mezuak"></p:ajax>
-						</p:calendar></td>
-				</tr>
-				</tr>
-			</table>		
-		</h:form>
-		<br />
+		<h3 >Event Dates</h3>
+		
+		<h:messages id="mezuak" style="color:blue" />
+		
+					Data (PrimeFacesekin):
+					<p:calendar id="data" value="#{createQuestions.data}" navigator="false" mode="inline">
+							<p:ajax event="dateSelect" listener="#{createQuestions.onDateSelect}" update="mezuak"></p:ajax>
+					</p:calendar>
+			
+		<h3>List of events:</h3>
+			<h:selectOneMenu id="aukera" value= "#{createQuestions.event}" style="width: 225px; " >
+				<f:selectItems value = "#{createQuestions.eventuak}"></f:selectItems>
+			</h:selectOneMenu><br />
+		<h3>Galdera :
+				<h:inputText style="width: 550px; "></h:inputText>
+			</h3>
+		<h3>Min bet : <h:inputText style="width: 550px; "></h:inputText><br /></h3>
+			<h:commandButton value="Atzera" action = "atzera" style="width: 106px; "></h:commandButton>
+			<h:commandButton value="IGO" style="width: 94px; "></h:commandButton>
+			
+			<br /><br /></h:form>
 	</h:body>
 </f:view>
 </html>
