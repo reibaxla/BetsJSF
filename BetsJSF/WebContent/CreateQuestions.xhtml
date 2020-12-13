@@ -18,19 +18,36 @@
 		
 					Data (PrimeFacesekin):
 					<p:calendar id="data" value="#{createQuestions.data}" navigator="false" mode="inline">
-							<p:ajax event="dateSelect" listener="#{createQuestions.onDateSelect}" update="mezuak"></p:ajax>
+							<p:ajax event="dateSelect" listener="#{createQuestions.onDateSelect}" update="eventuTaula"></p:ajax>
 					</p:calendar>
 			
 		<h3>List of events:</h3>
-			<h:selectOneMenu id="aukera" value= "#{createQuestions.event}" style="width: 225px; " >
-				<f:selectItems value = "#{createQuestions.eventuak}"></f:selectItems>
-			</h:selectOneMenu><br />
+<h:dataTable id="eventuTaula" value="#{createQuestions.eventuak}" var="item"
+							border="1">
+							<f:facet name="header">Eventuak</f:facet>
+							<h:column>
+								<f:facet name="header">Zenbakia</f:facet>
+							"#{item.eventNumber}"
+						</h:column>
+							<h:column>
+								<f:facet name="header">Eventua</f:facet>
+							"#{item.description}"
+						</h:column>
+							<h:column>
+								<f:facet name="header">Aukeratu Galdera</f:facet>
+								<h:commandButton value="Aukeratu" style="width: 119px;">
+									<f:setPropertyActionListener value="#{item}"
+										target="#{createQuestions.event}"></f:setPropertyActionListener>
+								</h:commandButton>
+							</h:column>
+						</h:dataTable>
+		<br />
 		<h3>Galdera :
-				<h:inputText style="width: 550px; "></h:inputText>
+				<h:inputText style="width: 550px;" value="#{createQuestions.galdera}"></h:inputText>
 			</h3>
-		<h3>Min bet : <h:inputText style="width: 550px; "></h:inputText><br /></h3>
+		<h3>Min bet : <h:inputText style="width: 550px;" value="#{createQuestions.apustua}"></h:inputText><br /></h3>
 			<h:commandButton value="Atzera" action = "atzera" style="width: 106px; "></h:commandButton>
-			<h:commandButton value="IGO" style="width: 94px; "></h:commandButton>
+			<h:commandButton value="IGO" style="width: 94px;" action="#{createQuestions.createQuestions}"></h:commandButton>
 			
 			<br /><br /></h:form>
 	</h:body>
